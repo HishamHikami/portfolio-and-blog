@@ -1,0 +1,56 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+  <title>{{ study.title }}</title>
+  <meta name="description" content="{{ study.short_description }}">
+  <link rel="canonical" href="hishamhikami.com/case-study/{{ study.slug }}/">
+  <meta name="robots" content="index, follow">
+</head>
+
+<body class="portfolio-details-page">
+  <main class="main">
+
+    <!-- Portfolio Details Section -->
+    <section id="portfolio-details" class="portfolio-details section">
+
+      <div class="container" data-aos="fade-up">
+
+        <div class="portfolio-details-slider">
+            <img src="{{ study.image.url }}" alt="" class="img-fluid services-img">
+        </div>
+
+        <div class="row justify-content-between gy-4 mt-4">
+
+          <div class="col-lg-8" data-aos="fade-up">
+            <div class="portfolio-description">
+              <h2>{{ study.heading }}</h2>
+              <p>
+                {{ study.description | safe }}
+              </p>
+
+            </div>
+          </div>
+
+          <div class="col-lg-3" data-aos="fade-up" data-aos-delay="100">
+            <div class="portfolio-info">
+              <h3>Project information</h3>
+              <ul>
+                <li><strong>Scope</strong> {{ study.category }}</li>
+                <li><strong>Client</strong> {{ study.title }}</li>
+                <li><strong>Project URL</strong> <a href="{{ study.link }}" target="_blank">{{ study.link }}</a></li>
+                <li><a href="{{ study.link }}" target="_blank" class="btn-visit align-self-start">Visit Website</a></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Portfolio Details Section -->
+
+  </main>
+</body>
+{% endblock content %}
