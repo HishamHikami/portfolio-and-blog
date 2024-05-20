@@ -13,7 +13,7 @@ RATING = (
 )
     
 class Technology(models.Model):
-    title = models.CharField(max_length=70, null=True, blank=True)
+    title = models.CharField(max_length=70, default="Logo")
     logo = models.ImageField(upload_to="tech-logos", default='tech-logo.png')
 
     class Meta:
@@ -34,9 +34,9 @@ class Service(models.Model):
         return self.heading
     
 class CSCategory(models.Model):
-    title = models.CharField(max_length=40, null=True, blank=True)
+    title = models.CharField(max_length=40)
     slug = models.SlugField(blank=True, null=True, unique=True, max_length=80)
-    description = models.CharField(max_length=160, null=True, blank=True)
+    description = models.CharField(max_length=160, default="Description")
     c_filter = models.CharField(max_length=15, null=True, blank=True)
 
     def clean_title(self):
@@ -54,12 +54,12 @@ class CSCategory(models.Model):
         return self.title
     
 class CaseStudy(models.Model):
-    title = models.CharField(max_length=40, null=True, blank=True)
+    title = models.CharField(max_length=40, default="Company")
     slug = models.SlugField(blank=True, null=True, unique=True, max_length=80)
     short_description = models.CharField(max_length=160, null=True, blank=True)
     image = models.ImageField(upload_to='case-studies', default='case-study.jpg')
     link = models.URLField(null=True, blank=True)
-    category = models.ForeignKey(CSCategory, on_delete=models.SET_NULL, null=True, blank=True)
+    category = models.ForeignKey(CSCategory, on_delete=models.SET_NULL, null=True)
     date = models.DateField(auto_now_add=True)
     heading = models.CharField(max_length=100, null=True, blank=True)
     description = CKEditor5Field(config_name='extends', null=True, blank=True)
@@ -80,7 +80,7 @@ class CaseStudy(models.Model):
         return self.title
 
 class FAQ(models.Model):
-    question = models.CharField(max_length=100, null=True, blank=True)
+    question = models.CharField(max_length=100, default="How helps?")
     answer = models.CharField(max_length=550, null=True, blank=True)
 
     class Meta:
@@ -90,15 +90,15 @@ class FAQ(models.Model):
         return self.question
     
 class Testimonial(models.Model):
-    name = models.CharField(max_length=40, null=True, blank=True)
-    profession = models.CharField(max_length=40, null=True, blank=True)
+    name = models.CharField(max_length=40, default="John Doe")
+    profession = models.CharField(max_length=40, default="Engineer")
     message = models.CharField(max_length=600, null=True, blank=True)
     rating = models.IntegerField(choices=RATING, default=None)
 
 class Contact(models.Model):
-    full_name = models.CharField(max_length=40, null=True, blank=True)
-    email = models.CharField(max_length=40, null=True, blank=True)
-    phone = models.CharField(max_length=40, null=True, blank=True)
+    full_name = models.CharField(max_length=40, default="John Doe")
+    email = models.CharField(max_length=40, default="john@email.com")
+    phone = models.CharField(max_length=40, default="+1 234567890")
     subject = models.CharField(max_length=200, null=True, blank=True)
     message = models.TextField(null=True, blank=True)
 
@@ -109,7 +109,7 @@ class Contact(models.Model):
         return self.full_name
     
 class GetQuote(models.Model):
-    email = models.CharField(max_length=40, null=True, blank=True)
+    email = models.CharField(max_length=40, default="john@email.com")
 
     class Meta:
         verbose_name_plural = "Quotation Requests"
@@ -118,8 +118,8 @@ class GetQuote(models.Model):
         return self.email
 
 class SEOHomepage(models.Model):
-    title = models.CharField(max_length=80, null=True, blank=True)
-    description = models.CharField(max_length=160, null=True, blank=True)
+    title = models.CharField(max_length=80, default="SEO title")
+    description = models.CharField(max_length=160, default="SEO description")
     canonical = models.URLField(null=True, blank=True)
 
     class Meta:
