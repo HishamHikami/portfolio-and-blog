@@ -41,12 +41,17 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
+          {% if request.path == '/' %}
           <li><a href="{% url 'core:index' %}" class="">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
           <li><a href="{% url 'blog:blog' %}">Blog</a></li>
           <li><a href="#contact">Contact</a></li>
+          {% else %}
+          <li><a href="{% url 'core:index' %}" class="">Home</a></li>
+          <li><a href="{% url 'blog:blog' %}">Blog</a></li>
+          {% endif %}
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -66,7 +71,7 @@
           <a href="{% url 'core:index' %}" class="logo d-flex align-items-center">
             <span class="sitename">Hisham Hikami</span><span>.</span>
           </a>
-          <p>We combine Python & Django development with powerful SEO to build high-performing websites that drive results.  Get a free consultation today and see how we can help your business thrive online.</p>
+          <p>Built with passion, powered by expertise. We craft user-friendly websites that convert, optimize for search engines, and provide the tools you need to succeed online.</p>
           <div class="social-links d-flex mt-4">
             <a href="https://linkedin.com/in/hishamhikami" target="_blank"><i class="bi bi-linkedin"></i></a>
           </div>
@@ -76,8 +81,6 @@
           <h4>Useful Links</h4>
           <ul>
             <li><a href="{% url 'core:index' %}">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
             <li><a href="{% url 'blog:blog' %}">Blog</a></li>
           </ul>
         </div>
