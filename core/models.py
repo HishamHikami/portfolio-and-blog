@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django_ckeditor_5.fields import CKEditor5Field
+from django.urls import reverse
 
 # Create your models here.
 
@@ -10,6 +11,12 @@ RATING = (
     (3,  "★★★☆☆"),
     (4,  "★★★★☆"),
     (5,  "★★★★★"),
+)
+
+STATUS = (
+    ("draft", "Draft"),
+    ("in_review", "In Review"),
+    ("published", "Published"),
 )
     
 class Technology(models.Model):
@@ -63,6 +70,7 @@ class CaseStudy(models.Model):
     date = models.DateField(auto_now_add=True)
     heading = models.CharField(max_length=100, null=True, blank=True)
     description = CKEditor5Field(config_name='extends', null=True, blank=True)
+    status = models.CharField(choices=STATUS, max_length=20, default="draft")
 
     def clean_title(self):
         self.title = self.title.strip()
@@ -72,6 +80,9 @@ class CaseStudy(models.Model):
         clean_title = self.clean_title()
         self.slug = f"{clean_title}-{self.pk}"
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('core:case-study', kwargs={'slug': self.slug})
 
     class Meta:
         verbose_name_plural = "Case Studies"

@@ -31,6 +31,7 @@ DEBUG = bool(os.environ.get('DEBUG', False))
 
 ALLOWED_HOSTS = [ '127.0.0.1', 'localhost', '64.23.231.113', 'hishamhikami.com', 'www.hishamhikami.com']
 
+SITE_ID = 1
 
 # Application definition
 
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
 
     # Third party
     'django_ckeditor_5',

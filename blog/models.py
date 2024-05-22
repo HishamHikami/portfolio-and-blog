@@ -4,6 +4,7 @@ from userauths.models import User
 from django.utils.text import slugify
 from django.utils.html import mark_safe
 from taggit.managers import TaggableManager
+from django.urls import reverse
 
 # Create your models here.
 
@@ -76,6 +77,9 @@ class Article(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.clean_heading())
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('blog:blog-detail', kwargs={'slug': self.slug})
     
     class Meta:
         verbose_name_plural = "Articles"
