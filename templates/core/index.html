@@ -2,31 +2,6 @@
 {% load static %}
 {% block content %}
 
-<head>
-  <title>{{ meta.title }}</title>
-  <meta name="description" content="{{ meta.description }}">
-  <link rel="canonical" href="{{ meta.cononical }}">
-  <meta name="robots" content="index, follow">
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Website Development",
-      "description": "We specialize in creating high-quality, user-friendly websites that help businesses achieve their goals.",
-      "provider": {
-        "@type": "Organization",
-        "name": "Hisham Hikami"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "bestRating": "5",
-        "worstRating": "1",
-        "ratingValue": "4.8",
-        "reviewCount": "23"
-      }
-    }
-  </script>
-</head>
 <body class="index-page">
   <main class="main">
 
@@ -43,7 +18,7 @@
           </div>
           <div class="col-lg-5">
             <div>
-              <h4 class="text-warning" id="confirmation"></h4>
+              <h3 class="text-warning" id="confirmation"></h3>
             </div>
             <div class="get_quote_hide">
               <form method="POST" class="sign-up-form d-flex get_quote_hide" id="get-quote-ajax" data-aos="fade-up" data-aos-delay="300">
@@ -150,7 +125,7 @@
             <div class="service-item d-flex">
               <div class="icon flex-shrink-0"><i class="{{ s.bootstrap_icon }}"></i></div>
               <div>
-                <h4 class="title"><a class="stretched-link">{{ s.heading }}</a></h4>
+                <h3 class="title">{{ s.heading }}</h3>
                 <p class="description">{{ s.description }}</p>
               </div>
             </div>
@@ -231,8 +206,8 @@
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-webdev">
               <img src="{{ w.image.url }}" class="img-fluid" alt="{{ w.title }}">
               <div class="portfolio-info">
-                <h4>{{ w.title }}</h4>
-                <h5>Scope: {{ w.category }}</h5>
+                <h3>{{ w.title }}</h3>
+                <h4>Scope: {{ w.category }}</h4>
                 <p>{{ w.short_description }}</p>
                 <a href="{% url 'core:case-study' w.slug %}" title="More Details" class="details-link"><i class="bi bi-arrow-right-square-fill"></i></a>
               </div>
@@ -243,8 +218,8 @@
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-seo">
               <img src="{{ s.image.url }}" class="img-fluid" alt="{{ s.title }}">
               <div class="portfolio-info">
-                <h4>{{ s.title }}</h4>
-                <h5>Scope: {{ s.category }}</h5>
+                <h3>{{ s.title }}</h3>
+                <h4>Scope: {{ s.category }}</h4>
                 <p>{{ s.short_description }}</p>
                 <a href="{% url 'core:case-study' s.slug %}" title="More Details" class="details-link"><i class="bi bi-arrow-right-square-fill"></i></a>
               </div>

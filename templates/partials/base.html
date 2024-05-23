@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +26,33 @@
 
   <!-- Main CSS File -->
   <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+  <title>{% if request.path == '/' %}{{ meta.title }}{% elif 'case-study' in request.path %}{{ study.title }}{% elif 'blog' in request.path %}{{ article.meta_title }}{% endif %}</title>
+  <meta name="description" content="{% if request.path == '/' %}{{ meta.description }}{% elif 'case-study' in request.path %}{{ study.short_description }}{% elif 'blog' in request.path %}{{ article.meta_description }}{% endif %}">
+  <link rel="canonical" href="{% if request.path == '/' %}{{ meta.cononical }}{% elif 'case-study' in request.path %}https://hishamhikami.com/case-study/{{ study.slug }}/{% elif 'blog' in request.path %}https://hishamhikami.com/blog/{{ article.slug }}/{% endif %}">
+  <meta name="robots" content="index, follow">
+
+  {% if request.path == '/' %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Website Development",
+      "description": "We specialize in creating high-quality, user-friendly websites that help businesses achieve their goals.",
+      "provider": {
+        "@type": "Organization",
+        "name": "Hisham Hikami"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "bestRating": "5",
+        "worstRating": "1",
+        "ratingValue": "4.8",
+        "reviewCount": "23"
+      }
+    }
+  </script>
+  {% endif %}
 
 </head>
 
@@ -73,7 +101,7 @@
           </a>
           <p>Built with passion, powered by expertise. We craft user-friendly websites that convert, optimize for search engines, and provide the tools you need to succeed online.</p>
           <div class="social-links d-flex mt-4">
-            <a href="https://linkedin.com/in/hishamhikami" target="_blank"><i class="bi bi-linkedin"></i></a>
+            <a href="https://linkedin.com/in/hishamhikami" target="_blank" aria-label="Visit Hisham Hikami's LinkedIn Profile"><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
 
@@ -98,8 +126,8 @@
           <p>Darul Hafsa, Near Town Municipality</p>
           <p>Ullal, Mangalore - 575020</p>
           <p>India</p>
-          <p class="mt-4"><strong>Phone:</strong> <span><a href="tel:+919632222154">+91 81050 22154</a></span></p>
-          <p><strong>Email:</strong> <span><a href="mailto:ideas@hishamhikami.com">ideas@hishamhikami.com</a></span></p>
+          <p class="mt-4"><strong>Phone: <span><a href="tel:+919632222154">+91 81050 22154</a></span></strong></p>
+          <p><strong>Email: <span><a href="mailto:ideas@hishamhikami.com">ideas@hishamhikami.com</a></span></strong></p>
         </div>
 
       </div>
