@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from core.models import FAQ, Technology, Service, Testimonial, CSCategory, CaseStudy, Contact, GetQuote, SEOHomepage
+from core.models import FAQ, Technology, Service, Testimonial, CSCategory, CaseStudy, Contact, GetQuote, FAQSMangalore, SEOHomepage
 
 # Register your models here.
 
@@ -21,6 +21,9 @@ class CaseStudyAdmin(admin.ModelAdmin):
 class FAQAdmin(admin.ModelAdmin):
     list_display = ['question']
 
+class FAQSMngAdmin(admin.ModelAdmin):
+    list_display = ['question']
+
 class TestimonialAdmin(admin.ModelAdmin):
     list_display = ['name', 'profession', 'rating']
 
@@ -38,6 +41,7 @@ admin.site.register(Service, ServiceAdmin)
 admin.site.register(CaseStudy, CaseStudyAdmin)
 admin.site.register(CSCategory, CSCategoryAdmin)
 admin.site.register(FAQ, FAQAdmin)
+admin.site.register(FAQSMangalore, FAQSMngAdmin)
 admin.site.register(Testimonial, TestimonialAdmin)
 admin.site.register(Contact, ContactAdmin)
 admin.site.register(GetQuote, GetQuoteAdmin)

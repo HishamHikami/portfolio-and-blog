@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from core.models import Contact, GetQuote, Service, Technology, CaseStudy, CSCategory, FAQ, SEOHomepage
+from core.models import Contact, GetQuote, Service, Technology, CaseStudy, CSCategory, FAQ, FAQSMangalore, SEOHomepage
 
 # Create your views here.
 
@@ -71,3 +71,19 @@ def ajax_get_quote(request):
     }
 
     return JsonResponse({"data":data})
+
+def s_magalore(request):
+    tech = Technology.objects.all()
+    seo = CaseStudy.objects.filter(category=2)
+    webdev = CaseStudy.objects.filter(category=1)
+    faq = FAQSMangalore.objects.all()
+
+
+    context = {
+        "tech": tech,
+        "seo": seo,
+        "webdev": webdev,
+        "faq": faq,
+    }
+
+    return render(request, 'core/lp_s_mangalore.html', context)

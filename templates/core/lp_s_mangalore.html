@@ -2,55 +2,54 @@
 {% load static %}
 {% block content %}
 
-<body class="index-page">
   <main class="main">
 
     <!-- Hero Section -->
     <section id="hero" class="hero section">
 
-      <img src="{% static 'assets\img\hero-image.jpg' %}" alt="" data-aos="fade-in">
-
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-7">
-            <h2 data-aos="fade-up" data-aos-delay="100">Let's get to where your website looks wow!</h2>
-            <p data-aos="fade-up" data-aos-delay="200">Struggling to be seen online? We help businesses like yours dominate search engines and craft stunning websites that convert.</p>
-          </div>
-          <div class="col-lg-5">
-            <div>
-              <h3 class="text-warning" id="confirmation"></h3>
+        <img src="{% static 'assets\img\hero-image.jpg' %}" alt="" data-aos="fade-in">
+  
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-7">
+              <h2 data-aos="fade-up" data-aos-delay="100">Boost Your Local Presence: Decoding the Power of SEO in Mangalore</h2>
+              <p data-aos="fade-up" data-aos-delay="200">Struggling to attract new customers in Mangalore? By optimizing your website for local search, you can connect with potential customers actively searching for businesses like yours.</p>
             </div>
-            <div class="get_quote_hide">
-              <form method="POST" class="sign-up-form d-flex get_quote_hide" id="get-quote-ajax" data-aos="fade-up" data-aos-delay="300">
-              {% csrf_token %}
-              <input type="text" id="email-1" class="form-control" placeholder="Enter email address" required>
-              <input type="submit" id="get-quote-ajax" class="btn btn-primary" value="Get Quote">
-            </form>
+            <div class="col-lg-5">
+              <div>
+                <h3 class="text-warning" id="confirmation"></h3>
+              </div>
+              <div class="get_quote_hide">
+                <form method="POST" class="sign-up-form d-flex get_quote_hide" id="get-quote-ajax" data-aos="fade-up" data-aos-delay="300">
+                {% csrf_token %}
+                <input type="text" id="email-1" class="form-control" placeholder="Enter email address" required>
+                <input type="submit" id="get-quote-ajax" class="btn btn-primary" value="Get Quote">
+              </form>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-    </section><!-- /Hero Section -->
+  
+      </section><!-- /Hero Section -->
 
     <!-- Technology Section -->
     <section id="clients" class="clients section">
 
-      <div class="container" data-aos="fade-up">
-
-        <div class="row gy-4">
-
-          {% for logo in tech %}
-          <div class="col-xl-2 col-sm-12 col-md-3 col-6 client-logo">
-            <img src="{{ logo.logo.url }}" class="img-fluid" alt="">
-          </div><!-- End Technology Item -->
-          {% endfor %}
-
+        <div class="container" data-aos="fade-up">
+  
+          <div class="row gy-4">
+  
+            {% for logo in tech %}
+            <div class="col-xl-2 col-sm-12 col-md-3 col-6 client-logo">
+              <img src="{{ logo.logo.url }}" class="img-fluid" alt="">
+            </div><!-- End Technology Item -->
+            {% endfor %}
+  
+          </div>
+  
         </div>
-
-      </div>
-
-    </section><!-- /Technology Section -->
+  
+      </section><!-- /Technology Section -->
 
     <!-- About Section -->
     <section id="about" class="about section">
@@ -59,10 +58,9 @@
         <div class="row align-items-xl-center gy-5">
 
           <div class="col-xl-5 content">
-            <h3>About</h3>
-            <h2>Who We Are</h2>
-            <p>We're a passionate team of developers dedicated to crafting exceptional digital experiences. We combine expertise in web development, SEO optimization, custom email solutions, and server management to deliver results you can trust.</p>
-            <p>We leverage the power of Python and prioritize building websites with a strong SEO foundation and lightning-fast server speeds. Crafted with care, every project receives our full attention to detail, ensuring the highest quality and functionality to help you achieve your online goals.</p>
+            <h3>Who We Are</h3>
+            <h2>We Help You Grow</h2>
+            <p>We're a passionate team of developers dedicated to crafting exceptional digital experiences. We combine expertise in web development, SEO optimization, custom email solutions, and server management to deliver results you can trust.  We leverage the power of Python and prioritize building websites with a strong SEO foundation and lightning-fast server speeds. Crafted with care, every project receives our full attention to detail, ensuring the highest quality and functionality to help you achieve your online goals.</p>
             <a href="#contact" class="read-more"><span>Get In Touch</span></a>
           </div>
 
@@ -108,36 +106,6 @@
       </div>
 
     </section><!-- /About Section -->
-
-    <!-- Services Section -->
-    <section id="services" class="services section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Services</h2>
-        <p>Build a strong online presence. We offer a complete suite of services including web development, SEO optimization, custom email solutions, and reliable server management.</p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row gy-4">
-            {% for s in service %}
-          <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item d-flex">
-              <div class="icon flex-shrink-0"><i class="{{ s.bootstrap_icon }}"></i></div>
-              <div>
-                <h3 class="title">{{ s.heading }}</h3>
-                <p class="description">{{ s.description }}</p>
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-          <!-- End Service Item -->
-        </div>
-
-      </div>
-
-    </section><!-- /Services Section -->
 
     <!-- Features Section -->
     <section id="features" class="features section">
@@ -246,7 +214,7 @@
             <div class="content px-xl-5">
               <h3><span>Frequently Asked </span><strong>Questions</strong></h3>
               <p>
-                Whether you're curious about the specific benefits on how we integrate SEO into the development process, we've got you covered. Browse through our FAQs to find answers tailored to your needs.
+                Whether you're curious about the specific benefits on how we locally implement SEO, we've got you covered. Browse through our FAQs to find answers tailored to your needs.
               </p>
             </div>
           </div>
@@ -367,7 +335,5 @@
       </div>
 
     </section><!-- /Contact Section -->
-
-</main>
-</body>
+  </main>
 {% endblock content %}

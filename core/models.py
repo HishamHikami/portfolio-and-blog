@@ -95,7 +95,17 @@ class FAQ(models.Model):
     answer = models.CharField(max_length=550, null=True, blank=True)
 
     class Meta:
-        verbose_name_plural = "FAQs"
+        verbose_name_plural = "Homepage FAQs"
+
+    def __str__(self):
+        return self.question
+    
+class FAQSMangalore(models.Model):
+    question = models.CharField(max_length=100, default="How helps?")
+    answer = models.CharField(max_length=550, null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = "FAQs for SEO in Mangalore"
 
     def __str__(self):
         return self.question
