@@ -37,22 +37,37 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Website Development",
-      "description": "We specialize in creating high-quality, user-friendly websites that help businesses achieve their goals.",
-      "provider": {
-        "@type": "Organization",
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "4.8",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "itemReviewed": {
+        "@type": "Service",
+        "name": "Website Development",
+        "description": "We specialize in creating high-quality, user-friendly websites that help businesses achieve their goals.",
+        "provider": {
+          "@type": "Organization",
+          "name": "Hisham Hikami"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingValue": "4.8",
+          "reviewCount": "23"
+        }
+      },
+      "author": {
+        "@type": "Person",
         "name": "Hisham Hikami"
       },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "bestRating": "5",
-        "worstRating": "1",
-        "ratingValue": "4.8",
-        "reviewCount": "23"
-      }
+      "reviewBody": "Excellent service and very professional team."
     }
-  </script>
+    </script>
+    
   {% endif %}
 
 </head>
