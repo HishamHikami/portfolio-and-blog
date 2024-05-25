@@ -1,4 +1,4 @@
-from core.views import ajax_contact_form, ajax_get_quote, index, portfolio, s_magalore
+from core.views import ajax_contact_form, ajax_get_quote, index, portfolio
 from django.urls import path
 from django.contrib.sitemaps.views import sitemap
 from .sitemap import StaticViewSitemap, CaseStudySitemap
@@ -23,5 +23,4 @@ urlpatterns = [
         },
         name = 'django.contrib.sitemaps.views.sitemap'
     ),
-    path("seo-in-mangalore/", s_magalore, name="s-mangalore"),
 ]
