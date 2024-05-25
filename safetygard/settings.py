@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     # Installed Apps
     'core',
     'blog',
+    'landing_page',
     'userauths',
 ]
 
