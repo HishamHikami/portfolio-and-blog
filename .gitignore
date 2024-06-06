@@ -6,3 +6,4 @@ media
 staticfiles
 *.pyc
 uploads/
+gunicorn_config.py
