@@ -1631,6 +1631,12 @@ section,
   margin-bottom: 0;
 }
 
+.sticky {
+  position: -webkit-sticky; /* For Safari */
+  position: sticky;
+  top: 100px; /* Adjust based on your header height */
+}
+
 /*--------------------------------------------------------------
 # Pagination Section
 --------------------------------------------------------------*/
