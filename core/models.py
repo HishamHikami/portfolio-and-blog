@@ -30,15 +30,33 @@ class Technology(models.Model):
         return self.title
 
 class Service(models.Model):
-    heading = models.CharField(max_length=60)
-    description = models.CharField(max_length=550)
-    bootstrap_icon = models.CharField(max_length=35, null=True, blank=True)
+    heading_h1 = models.CharField(max_length=60)
+    short_description = models.CharField(max_length=550)
+    highlight_points = models.JSONField(default=list)
+    cover = models.ImageField(upload_to='services', default='service.jpg')
+    heading_h2_1 = models.CharField(max_length=150)
+    paragraph_1 = models.TextField(max_length=1000)
+    technical_points = models.JSONField(default=list)
+    heading_h3 = models.CharField(max_length=150)
+    paragraph_1_1 = models.TextField(max_length=1000)
+    image_1 = models.ImageField(upload_to='services', default='service-1.jpg')
+    image_2 = models.ImageField(upload_to='services', default='service-2.jpg')
+    heading_h2_2 = models.CharField(max_length=150)
+    paragraph_2 = models.TextField(max_length=1000)
 
     class Meta:
         verbose_name_plural = "Services"
 
     def __str__(self):
-        return self.heading
+        return self.heading_h1
+    
+class ServiceFAQ(models.Model):
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, related_name='faqs')
+    question = models.CharField(max_length=200)
+    answer = CKEditor5Field(config_name='extends', null=True, blank=True)
+
+    def __str__(self):
+        return self.question
     
 class CSCategory(models.Model):
     title = models.CharField(max_length=40)
