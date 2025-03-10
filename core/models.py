@@ -31,29 +31,70 @@ class Technology(models.Model):
 
 class Service(models.Model):
     heading_h1 = models.CharField(max_length=60)
-    short_description = models.CharField(max_length=550)
-    highlight_points = models.JSONField(default=list)
+    slug = models.SlugField(unique=True, blank=True, null=True)
+    description = models.CharField(max_length=550)
     cover = models.ImageField(upload_to='services', default='service.jpg')
-    heading_h2_1 = models.CharField(max_length=150)
-    paragraph_1 = models.TextField(max_length=1000)
-    technical_points = models.JSONField(default=list)
-    heading_h3 = models.CharField(max_length=150)
-    paragraph_1_1 = models.TextField(max_length=1000)
-    image_1 = models.ImageField(upload_to='services', default='service-1.jpg')
-    image_2 = models.ImageField(upload_to='services', default='service-2.jpg')
-    heading_h2_2 = models.CharField(max_length=150)
-    paragraph_2 = models.TextField(max_length=1000)
 
     class Meta:
         verbose_name_plural = "Services"
 
     def __str__(self):
         return self.heading_h1
+
+class ServiceHighlight(models.Model):
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, related_name='service_highlight')
+    highlight = models.CharField(max_length=200)
+
+    class Meta:
+        verbose_name_plural = "Highlights"
+
+    def __str__(self):
+        return self.highlight
     
+class ServiceSection1(models.Model):
+    service = models.OneToOneField(Service, on_delete=models.CASCADE, related_name='service_section_1')
+    heading_h2 = models.CharField(max_length=150)
+    paragraph_1 = models.TextField(max_length=1000)
+    heading_h3 = models.CharField(max_length=150)
+    paragraph_1_1 = models.TextField(max_length=1000)
+    image_1 = models.ImageField(upload_to='services', default='service-1.jpg')
+    image_2 = models.ImageField(upload_to='services', default='service-2.jpg')
+
+    class Meta:
+        verbose_name_plural = "Service Section 1"
+
+    def __str__(self):
+        return self.heading_h2
+    
+class ServiceTechnicalHighlight(models.Model):
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, related_name='technical_highlight')
+    technical = models.CharField(max_length=200)
+
+    class Meta:
+        verbose_name_plural = "Tech Highlights"
+
+    def __str__(self):
+        return self.technical
+    
+class ServiceSection2(models.Model):
+    service = models.OneToOneField(Service, on_delete=models.CASCADE, related_name='service_section_2')
+    heading_h2 = models.CharField(max_length=150)
+    paragraph_1 = models.TextField(max_length=1000)
+    image_1 = models.ImageField(upload_to='services', default='service-3.jpg')
+
+    class Meta:
+        verbose_name_plural = "Service Section 2"
+
+    def __str__(self):
+        return self.heading_h2
+
 class ServiceFAQ(models.Model):
     service = models.ForeignKey(Service, on_delete=models.CASCADE, related_name='faqs')
     question = models.CharField(max_length=200)
-    answer = CKEditor5Field(config_name='extends', null=True, blank=True)
+    answer = models.TextField(max_length=1000)
+
+    class Meta:
+        verbose_name_plural = "FAQs"
 
     def __str__(self):
         return self.question

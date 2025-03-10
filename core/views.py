@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from core.models import Contact, GetQuote, Service, Technology, CaseStudy, CSCategory, FAQ, SEOHomepage
 
@@ -26,6 +26,26 @@ def index(request):
     }
 
     return render(request, 'core/index.html', context)
+
+def service_detail(request, slug):
+    service = get_object_or_404(Service, slug=slug)
+    faqs = service.faqs.all()
+    section_1 = getattr(service, 'service_section_1', None)  # Avoids errors if it doesn't exist
+    section_2 = getattr(service, 'service_section_2', None)  # If you make this OneToOneField too
+    highlights = service.service_highlight.all()
+    technicals = service.technical_highlight.all()
+    services = Service.objects.all()
+
+    context = {
+        'service': service,
+        'section_1': section_1,
+        'section_2': section_2,
+        'highlights': highlights,
+        'technicals': technicals,
+        'faqs': faqs,
+        'services': services,
+    }
+    return render(request, 'core/services/service_detail.html', context)
 
 def portfolio(request, slug):
     study = CaseStudy.objects.get(slug=slug)

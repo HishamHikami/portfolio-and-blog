@@ -1,0 +1,188 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="service-details-area rts-section-gapTop bg-dark-s">
+    <div class="container-150">
+        <div class="row  pt--120 pb--80 pt_lg--50 pt_md--60 pt_sm--10">
+            <div class="col-lg-12">
+                <div class="main-page-title-service-left-area">
+                    <div class="left">
+                        <h1 class="title-page rts_hero__title">
+                            {{ service.heading_h1 }}
+                        </h1>
+                        <div class="bottom-content">
+                            <p class="disc">
+                                {{ service.description }}
+                            </p>
+                            <div class="check-area-main-sd">
+                                {% for point in highlights %}
+                                <div class="single-check">
+                                    <i class="fa-light fa-check"></i>
+                                    <p>{{ point }}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="top-center-image circle-speen rts-scroll-down-circle-wrapper-3">
+                            <a href="#" class="speen-shape scroll-down-circle-3">
+                                <svg class="uni-circle-text-path uk-text-secondary uni-animation-spin" viewBox="0 0 100 100" width="180" height="180">
+                                    <defs>
+                                        <path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0">
+                                        </path>
+                                    </defs>
+                                    <text font-size="11.75">
+                                        <textPath xlink:href="#circle">Project SHowcase • Project SHowcase •</textPath>
+                                    </text>
+                                </svg>
+                                <i class="fa-solid fa-star-sharp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt--80 pt_md--10 pt_sm--0">
+            <div class="col-xl-9 col-lg-12 pr--60 pr_md--15 pr_sm--10 pb_sm--30">
+                <!-- service details left area start -->
+                <div class="service-details-left">
+                    <div class="thumbnail-large">
+                        <img src="{{ service.cover.url }}" alt="service-details">
+                    </div>
+                </div>
+                <!-- service details left area end -->
+                <div class="single-para-title-service-details mt--40">
+                    <h2 class="title">{{ section_1.heading_h2 }}</h2>
+                    <p class="disc">
+                        {{ section_1.paragraph_1 }}
+                    </p>
+                </div>
+
+                <div class="service-short-quote mt--50">
+
+                    <div class="check-area-main-sd">
+                        {% for t in technicals %}
+                        <div class="single-check">
+                            <i class="fa-light fa-plus"></i>
+                            <p>{{ t }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="right-info-service-short-quote">
+                        <h3 class="title">{{ section_1.heading_h3 }}</h3>
+                        <p class="disc">
+                            {{ section_1.paragraph_1_1 }}
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="image-thumbnail-2-service-d mt--50">
+                    <div class="row g-4">
+                        <div class="col-lg-5">
+                            <div class="thumbnail-service">
+                                <img src="{{ section_1.image_1.url }}" alt="service">
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="thumbnail-service">
+                                <img src="{{ section_1.image_2.url }}" alt="service">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-para-title-service-details mt--40">
+                    <h3 class="title">{{ section_2.heading_h2 }}</h3>
+                    <p class="disc">
+                        {{ section_2.paragraph_1 }}
+                    </p>
+                </div>
+                <div class="faq-section-start-left-img mt--80">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-12">
+                            <div class="thumbnail">
+                                <img src="{{ section_2.image_1.url }}" alt="service_images">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-12 pl--50 pl_lg--0">
+                            <!-- Accordion area start -->
+                            <div class="service-details-accordion-area">
+                                <h3 class="title">Frequently Asked Questions</h3>
+                                <div class="accordion" id="accordionExample">
+                                    {% for faq in faqs %}
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+                                                <button class="accordion-button {% if not forloop.first %}collapsed{% endif %}" 
+                                                        type="button" 
+                                                        data-bs-toggle="collapse" 
+                                                        data-bs-target="#collapse{{ forloop.counter }}" 
+                                                        aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" 
+                                                        aria-controls="collapse{{ forloop.counter }}">
+                                                    {{ faq.question }}
+                                                </button>
+                                            </h2>
+                                            <div id="collapse{{ forloop.counter }}" 
+                                                class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" 
+                                                aria-labelledby="heading{{ forloop.counter }}" 
+                                                data-bs-parent="#accordionExample">
+                                                <div class="accordion-body">
+                                                    <p>{{ faq.answer | safe }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <!-- Accordion area end -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-12 mt_lg--50 rts-sticky-column-item">
+                <div class="theiaStickySidebar">
+                    <div class="rts-single-wized Categories">
+                        <div class="wized-header">
+                            <h5 class="title">Other Services</h5>
+                        </div>
+                        <div class="wized-body">
+                            <ul class="single-categories">
+                                {% for s in services %}
+                                    {% if s.slug != service.slug %}  {# Hide the current service #}
+                                        <li>
+                                            <a href="{% url 'core:service_detail' s.slug %}">
+                                                {{ s.heading_h1 }} <i class="far fa-long-arrow-right"></i>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="rts-single-wized Categories">
+                        <div class="wized-header">
+                            <h5 class="title">
+                                Let's start new project.
+                            </h5>
+                        </div>
+                        <div class="wized-body">
+                            <form class="service-details-form" action="#">
+                                <input type="text" placeholder="Your name">
+                                <input type="text" placeholder="Phone number">
+                                <textarea placeholder="Message"></textarea>
+                                <button>Start Project</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

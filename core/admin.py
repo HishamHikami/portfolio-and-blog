@@ -2,23 +2,34 @@ from django.contrib import admin
 from django.utils.html import format_html
 from django_json_widget.widgets import JSONEditorWidget
 from django.db import models
-from core.models import FAQ, Technology, Service, Testimonial, CSCategory, CaseStudy, Contact, GetQuote, SEOHomepage, ServiceFAQ
+from core.models import FAQ, Technology, Service, Testimonial, CSCategory, CaseStudy, Contact, GetQuote, SEOHomepage, ServiceFAQ, ServiceHighlight, ServiceTechnicalHighlight, ServiceSection1, ServiceSection2
 
 # Register your models here.
 
-class ServiceFAQInline(admin.StackedInline):  # or admin.TabularInline
+class ServiceFAQInline(admin.StackedInline):
     model = ServiceFAQ
-    extra = 1  # Number of empty forms to display
+    extra = 1
+
+class ServiceHighlightsInline(admin.StackedInline):
+    model = ServiceHighlight
+    extra = 1
+
+class ServiceTechnicalsInline(admin.StackedInline):
+    model = ServiceTechnicalHighlight
+    extra = 1
+
+class ServiceSection1Inline(admin.StackedInline):
+    model = ServiceSection1
+
+class ServiceSection2Inline(admin.StackedInline):
+    model = ServiceSection2
 
 class TechnologyAdmin(admin.ModelAdmin):
     list_display = ['title', 'logo']
 
 class ServiceAdmin(admin.ModelAdmin):
-    list_display = ['heading_h1', 'short_description']
-    formfield_overrides = {
-        models.JSONField: {"widget": JSONEditorWidget},
-    }
-    inlines = [ServiceFAQInline]
+    list_display = ['heading_h1', 'description']
+    inlines = [ServiceHighlightsInline, ServiceSection1Inline, ServiceTechnicalsInline, ServiceSection2Inline, ServiceFAQInline]
 
 class CSCategoryAdmin(admin.ModelAdmin):
     list_display = ['title', 'description']
