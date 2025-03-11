@@ -28,7 +28,7 @@ class TechnologyAdmin(admin.ModelAdmin):
     list_display = ['title', 'logo']
 
 class ServiceAdmin(admin.ModelAdmin):
-    list_display = ['name', 'description']
+    list_display = ['name', 'status', 'date']
     inlines = [ServiceHighlightsInline, ServiceSection1Inline, ServiceTechnicalsInline, ServiceSection2Inline, ServiceFAQInline]
 
 class CSCategoryAdmin(admin.ModelAdmin):
