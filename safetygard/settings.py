@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'django_ckeditor_5',
     'taggit',
     'storages',
-    "django_json_widget",
 
     # Installed Apps
     'core',

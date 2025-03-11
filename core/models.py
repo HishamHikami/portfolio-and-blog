@@ -126,7 +126,8 @@ class CSCategory(models.Model):
         return self.title
     
 class CaseStudy(models.Model):
-    title = models.CharField(max_length=40, default="Company")
+    name = models.CharField(max_length=40, default="Company")
+    title = models.CharField(max_length=40, default="Company Case Study")
     slug = models.SlugField(blank=True, null=True, unique=True, max_length=80)
     short_description = models.CharField(max_length=160, null=True, blank=True)
     image = models.ImageField(upload_to='case-studies', default='case-study.jpg')

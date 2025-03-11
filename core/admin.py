@@ -35,7 +35,7 @@ class CSCategoryAdmin(admin.ModelAdmin):
     readonly_fields = ['slug']
 
 class CaseStudyAdmin(admin.ModelAdmin):
-    list_display = ['title', 'slug', 'category', 'status']
+    list_display = ['name', 'category', 'status']
     readonly_fields = ['slug']
 
 class FAQAdmin(admin.ModelAdmin):
