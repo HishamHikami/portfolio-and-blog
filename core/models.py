@@ -30,6 +30,7 @@ class Technology(models.Model):
         return self.title
 
 class Service(models.Model):
+    name = models.CharField(max_length=40, default="Service")
     heading_h1 = models.CharField(max_length=60)
     slug = models.SlugField(unique=True, blank=True, null=True)
     description = models.CharField(max_length=550)
@@ -177,6 +178,18 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.full_name
+    
+class ServicePageLead(models.Model):
+    name = models.CharField(max_length=40, default="John Doe")
+    phone = models.CharField(max_length=40, default="+1 234567890")
+    message = models.TextField(null=True, blank=True)
+    page_url = models.URLField(max_length=200, null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = "Service Page Leads"
+
+    def __str__(self):
+        return self.name
     
 class GetQuote(models.Model):
     email = models.CharField(max_length=40, default="john@email.com")

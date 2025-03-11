@@ -1,5 +1,6 @@
 $(document).ready(function () {
     
+    // Existing Contact Form AJAX Submission (No Changes)
     $(document).on("submit", "#contact-form-ajax", function (e) {
         e.preventDefault()
         console.log("Submited...");
@@ -36,8 +37,9 @@ $(document).ready(function () {
                 $("#message-response").html("Message sent successfully.")
             }
         })
-    })
+    });
 
+    // Existing Get Quote Form AJAX Submission (No Changes)
     $(document).on("submit", "#get-quote-ajax", function (e) {
         e.preventDefault()
         console.log("Submitted...");
@@ -62,5 +64,43 @@ $(document).ready(function () {
                 $("#confirmation").html("Will get back to you soon!")
             }
         })
-    })
-})
+    });
+
+    // New Service Detail Page Form (Made Unique)
+    $(document).on("submit", "#service-detail-form", function (e) {
+        e.preventDefault(); // Prevent form submission
+        console.log("Service Detail Form Submitted...");
+    
+        // Capture the correct page URL BEFORE making the AJAX request
+        let servicePage = window.location.href; // Full URL
+    
+        console.log("Correct Page URL:", servicePage); // Ensure it's correct
+    
+        let serviceName = $("#service-name").val();
+        let servicePhone = $("#service-phone").val();
+        let serviceMessage = $("#service-message").val();
+    
+        $.ajax({
+            url: "/ajax-service-detail-form/",
+            type: "POST",
+            data: {
+                "name": serviceName,
+                "phone": servicePhone,
+                "message": serviceMessage,
+                "page": servicePage, // Now sending the correct full page URL
+                "csrfmiddlewaretoken": $("input[name=csrfmiddlewaretoken]").val()
+            },
+            dataType: "json",
+            beforeSend: function () {
+                console.log("Sending Service Detail Data to Server...");
+            },
+            success: function (res) {
+                console.log("Service Detail Data Sent to Server!");
+    
+                // Hide form and show success message
+                $("#service-detail-form").hide();
+                $("#service-response").html("Request submitted successfully!").show();
+            }
+        });
+    });
+});

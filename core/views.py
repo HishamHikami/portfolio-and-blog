@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
-from core.models import Contact, GetQuote, Service, Technology, CaseStudy, CSCategory, FAQ, SEOHomepage
+from core.models import Contact, GetQuote, Service, Technology, CaseStudy, CSCategory, FAQ, SEOHomepage, ServicePageLead
+from .forms import ServicePageLeadForm
 
 # Create your views here.
 
@@ -36,6 +37,18 @@ def service_detail(request, slug):
     technicals = service.technical_highlight.all()
     services = Service.objects.all()
 
+    form = ServicePageLeadForm()
+
+    if request.method == "POST" and request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        form = ServicePageLeadForm(request.POST)
+        if form.is_valid():
+            lead = form.save(commit=False)
+            lead.page_url = request.build_absolute_uri()  # Capture the page URL
+            lead.save()
+            return JsonResponse({"success": True, "message": "Thank you! Your request has been submitted."})
+
+        return JsonResponse({"success": False, "errors": form.errors}, status=400)
+
     context = {
         'service': service,
         'section_1': section_1,
@@ -44,8 +57,20 @@ def service_detail(request, slug):
         'technicals': technicals,
         'faqs': faqs,
         'services': services,
+        'form': form,
     }
     return render(request, 'core/services/service_detail.html', context)
+
+def service_detail_form_submit(request):
+    if request.method == "POST" and request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        form = ServicePageLeadForm(request.POST)
+        if form.is_valid():
+            lead = form.save(commit=False)
+            lead.page_url = request.POST.get("page")  # Get the correct URL from AJAX request
+            lead.save()
+            return JsonResponse({"success": True, "message": "Thank you! Your request has been submitted."})
+        return JsonResponse({"success": False, "errors": form.errors}, status=400)
+    return JsonResponse({"error": "Invalid request"}, status=400)
 
 def portfolio(request, slug):
     study = CaseStudy.objects.get(slug=slug)

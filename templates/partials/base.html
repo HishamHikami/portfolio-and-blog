@@ -125,48 +125,11 @@
                                 </path>
                             </svg></span></a>
                                                     <ul class="sub-menu">
-                                                        <li class="menu-item menu-item-has-children">
-                                                            <a href="#">Portfolio Grid <span><svg height="24" viewBox="0 0 24 24" width="24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path class="heroicon-ui"
-                                        d="M18.59 13H3a1 1 0 0 1 0-2h15.59l-5.3-5.3a1 1 0 1 1 1.42-1.4l7 7a1 1 0 0 1 0 1.4l-7 7a1 1 0 0 1-1.42-1.4l5.3-5.3z">
-                                    </path>
-                                </svg></span></a>
-                                                            <ul class="sub-menu">
-                                                                <li class="menu-item"><a href="portfolio-grid.html">Grid 2 Column</a></li>
-                                                                <li class="menu-item"><a href="portfolio-grid-3column.html">Grid 3 Column</a></li>
-                                                                <li class="menu-item"><a href="portfolio-full-width.html">Grid Full Width</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li class="menu-item menu-item-has-children">
-                                                            <a href="#">Portfolio List <span><svg height="24" viewBox="0 0 24 24" width="24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path class="heroicon-ui"
-                                        d="M18.59 13H3a1 1 0 0 1 0-2h15.59l-5.3-5.3a1 1 0 1 1 1.42-1.4l7 7a1 1 0 0 1 0 1.4l-7 7a1 1 0 0 1-1.42-1.4l5.3-5.3z">
-                                    </path>
-                                </svg></span></a>
-                                                            <ul class="sub-menu">
-                                                                <li class="menu-item"><a href="portfolio-two.html">Portfolio List</a></li>
-                                                                <li class="menu-item"><a href="showcase-interactive-list.html">Interactive Lists</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li class="menu-item"><a href="portfolio-one.html">Portfolio Masonry</a></li>
-                                                        <li class="menu-item"><a href="portfolio-filter.html">Portfolio Filter</a></li>
-                                                        <li class="menu-item menu-item-has-children">
-                                                            <a href="#">Portfolio Details <span><svg height="24" viewBox="0 0 24 24" width="24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path class="heroicon-ui"
-                                        d="M18.59 13H3a1 1 0 0 1 0-2h15.59l-5.3-5.3a1 1 0 1 1 1.42-1.4l7 7a1 1 0 0 1 0 1.4l-7 7a1 1 0 0 1-1.42-1.4l5.3-5.3z">
-                                    </path>
-                                </svg></span></a>
-                                                            <ul class="sub-menu">
-                                                                <li class="menu-item"><a href="portfolio-details.html">Portfolio Details</a></li>
-                                                                <li class="menu-item"><a href="portfolio-details-two.html">Portfolio Details Two</a></li>
-                                                                <li class="menu-item"><a href="portfolio-details-three.html">Portfolio Details Three</a></li>
-                                                                <li class="menu-item"><a href="portfolio-details-four.html">Portfolio Details Four</a></li>
-                                                                <li class="menu-item"><a href="portfolio-details-slider.html">Portfolio Details Slider</a></li>
-                                                            </ul>
-                                                        </li>
+                                                        {% for service in services %}
+                                                            <li class="menu-item">
+                                                                <a href="{% url 'core:service_detail' service.slug %}">{{ service.name }}</a>
+                                                            </li>
+                                                        {% endfor %}
                                                     </ul>
                                                 </li>
                                                 <li class="menu-item menu-item-has-children">

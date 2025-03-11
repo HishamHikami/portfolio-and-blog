@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from django_json_widget.widgets import JSONEditorWidget
 from django.db import models
-from core.models import FAQ, Technology, Service, Testimonial, CSCategory, CaseStudy, Contact, GetQuote, SEOHomepage, ServiceFAQ, ServiceHighlight, ServiceTechnicalHighlight, ServiceSection1, ServiceSection2
+from core.models import FAQ, Technology, Service, Testimonial, CSCategory, CaseStudy, Contact, GetQuote, SEOHomepage, ServiceFAQ, ServiceHighlight, ServiceTechnicalHighlight, ServiceSection1, ServiceSection2, ServicePageLead
 
 # Register your models here.
 
@@ -28,7 +28,7 @@ class TechnologyAdmin(admin.ModelAdmin):
     list_display = ['title', 'logo']
 
 class ServiceAdmin(admin.ModelAdmin):
-    list_display = ['heading_h1', 'description']
+    list_display = ['name', 'description']
     inlines = [ServiceHighlightsInline, ServiceSection1Inline, ServiceTechnicalsInline, ServiceSection2Inline, ServiceFAQInline]
 
 class CSCategoryAdmin(admin.ModelAdmin):
@@ -51,6 +51,15 @@ class ContactAdmin(admin.ModelAdmin):
 class GetQuoteAdmin(admin.ModelAdmin):
     list_display = ['email',]
 
+    def get_readonly_fields(self, request, obj=None):
+        return [field.name for field in self.model._meta.fields]
+
+class ServiceLeadAdmin(admin.ModelAdmin):
+    list_display = ['name', 'phone', 'page_url']
+
+    def get_readonly_fields(self, request, obj=None):
+        return [field.name for field in self.model._meta.fields]
+
 class SEOHomepageAdmin(admin.ModelAdmin):
     list_display = ['title', 'description']
 
@@ -62,4 +71,5 @@ admin.site.register(FAQ, FAQAdmin)
 admin.site.register(Testimonial, TestimonialAdmin)
 admin.site.register(Contact, ContactAdmin)
 admin.site.register(GetQuote, GetQuoteAdmin)
+admin.site.register(ServicePageLead, ServiceLeadAdmin)
 admin.site.register(SEOHomepage, SEOHomepageAdmin)

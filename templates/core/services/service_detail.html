@@ -171,13 +171,28 @@
                             </h5>
                         </div>
                         <div class="wized-body">
-                            <form class="service-details-form" action="#">
-                                <input type="text" placeholder="Your name">
-                                <input type="text" placeholder="Phone number">
-                                <textarea placeholder="Message"></textarea>
-                                <button>Start Project</button>
+                            <h3 class="text-warning" id="service-response" aria-live="polite"></h3> <!-- Success Message Placeholder -->
+                            <form class="service-details-form" id="service-detail-form"> <!-- Unique Form ID -->
+                                {% csrf_token %}
+                                
+                                <div>
+                                    <label for="service-name">Your Name</label>
+                                    <input type="text" id="service-name" name="name" placeholder="Your name" required autocomplete="name">
+                                </div>
+                        
+                                <div>
+                                    <label for="service-phone">Phone Number</label>
+                                    <input type="tel" id="service-phone" name="phone" placeholder="Phone number" required autocomplete="tel">
+                                </div>
+                        
+                                <div>
+                                    <label for="service-message">Message</label>
+                                    <textarea id="service-message" name="message" placeholder="Message"></textarea>
+                                </div>
+                        
+                                <button type="submit">Start Project</button>
                             </form>
-                        </div>
+                        </div>                                              
                     </div>
                 </div>
             </div>
