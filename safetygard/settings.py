@@ -78,6 +78,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'core.context_processor.menu',
                 'blog.context_processor.default',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
