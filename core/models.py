@@ -35,6 +35,7 @@ class Service(models.Model):
     slug = models.SlugField(unique=True, blank=True, null=True)
     description = models.CharField(max_length=550)
     cover = models.ImageField(upload_to='services', default='service.jpg')
+    status = models.CharField(choices=STATUS, max_length=20, default="draft")
 
     class Meta:
         verbose_name_plural = "Services"

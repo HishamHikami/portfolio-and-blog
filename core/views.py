@@ -29,13 +29,13 @@ def index(request):
     return render(request, 'core/index.html', context)
 
 def service_detail(request, slug):
-    service = get_object_or_404(Service, slug=slug)
+    service = get_object_or_404(Service, slug=slug, status="published")
     faqs = service.faqs.all()
     section_1 = getattr(service, 'service_section_1', None)  # Avoids errors if it doesn't exist
     section_2 = getattr(service, 'service_section_2', None)  # If you make this OneToOneField too
     highlights = service.service_highlight.all()
     technicals = service.technical_highlight.all()
-    services = Service.objects.all()
+    # services = Service.objects.filter(status="published")
 
     form = ServicePageLeadForm()
 
@@ -56,7 +56,7 @@ def service_detail(request, slug):
         'highlights': highlights,
         'technicals': technicals,
         'faqs': faqs,
-        'services': services,
+       #  'services': services,
         'form': form,
     }
     return render(request, 'core/services/service_detail.html', context)
