@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from django_json_widget.widgets import JSONEditorWidget
 from django.db import models
 from core.models import FAQ, Technology, Service, Testimonial, CSCategory, CaseStudy, Contact, GetQuote, SEOHomepage, ServiceFAQ, ServiceHighlight, ServiceTechnicalHighlight, ServiceSection1, ServiceSection2, ServicePageLead
 
