@@ -2,13 +2,14 @@ from core.views import ajax_contact_form, ajax_get_quote, index, portfolio, serv
 from django.http import JsonResponse
 from django.urls import path
 from django.contrib.sitemaps.views import sitemap
-from .sitemap import StaticViewSitemap, CaseStudySitemap
+from .sitemap import StaticViewSitemap, CaseStudySitemap, ServiceSitemap
 
 app_name = "core"
 
 sitemaps = {
     "static": StaticViewSitemap,
     'case-study': CaseStudySitemap,
+    'service': ServiceSitemap,
 }
 
 urlpatterns = [

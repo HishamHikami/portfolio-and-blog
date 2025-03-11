@@ -36,6 +36,10 @@ class Service(models.Model):
     description = models.CharField(max_length=550)
     cover = models.ImageField(upload_to='services', default='service.jpg')
     status = models.CharField(choices=STATUS, max_length=20, default="draft")
+    date = models.DateField(auto_now_add=True)
+
+    def get_absolute_url(self):
+        return reverse('core:service_detail', kwargs={'slug': self.slug})
 
     class Meta:
         verbose_name_plural = "Services"

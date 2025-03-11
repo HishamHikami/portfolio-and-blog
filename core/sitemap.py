@@ -1,6 +1,6 @@
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
-from .models import CaseStudy
+from .models import CaseStudy, Service
 
 class StaticViewSitemap(Sitemap):
     priority = 0.5
@@ -18,6 +18,16 @@ class CaseStudySitemap(Sitemap):
 
     def items(self):
         return CaseStudy.objects.filter(status="published")
+    
+    def lastmod(self, obj):
+        return obj.date
+    
+class ServiceSitemap(Sitemap):
+    changefreq = "weekly"
+    priority = 0.9
+
+    def items(self):
+        return Service.objects.filter(status="published")
     
     def lastmod(self, obj):
         return obj.date
